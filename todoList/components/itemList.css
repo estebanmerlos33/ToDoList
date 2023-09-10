@@ -1,6 +1,28 @@
-div{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: 75vw;
+.itemList {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  width: 80vw;
+  outline: solid red 1px;
+  margin: 0 auto; /* Center the entire list horizontally */
+  padding: 10px; /* Add padding if needed */
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70vw;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.item-content {
+  flex-grow: 1;
+}
+
+button {
+  margin-left: 10px;
 }
