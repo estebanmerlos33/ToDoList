@@ -6,12 +6,10 @@ const NewTodo = (props) => {
       props.addItem(inputValue);
       setInputValue("");
     }
-    console.log("handle click button");
   };
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
-    console.log("handleChange");
   };
   return (
     <div>
