@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const todosRef = ref(database, "todos"); // Reference to the "todos" location
+const todosRef = ref(database, "todos");
 
 export const getRefDB = () => {
   

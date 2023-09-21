@@ -8,55 +8,31 @@ function App() {
   
   const [TODO_ITEMS, setItemList] = useState([]);
   const [globalId, setGlobalId] = useState(4);
-  const prevTodoList = useRef();
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const todosRef = getRefDB();
-        const snapshot = await get(todosRef);
-
-        if (snapshot.exists()) {
-          const data = snapshot.val();
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const data = await getTodos();
           const todosArray = Object.values(data);
-
-          setItemList(todosArray);
-        } else {
-          setItemList([]);
+          if (todosArray.length === 0) {
+            setItemList([]);
+          } else {
+            setItemList(todosArray);
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchTodos();
-  }, []);
+      };
   
-/*
-  useEffect(() => {
-  console.log("EFFECT TODO ITEMS");
+      fetchData();
+    }, []);
 
-
-  // Define a function to fetch and update data
-  const fetchData = async () => {
-    try {
-      const newTodoData = await getTodos(); // Fetch the new data
-      if (isFetching) {
-        setItemList(newTodoData); // Set the new data if fetch is still in progress
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  fetchData(); // Call the function immediately
-}, [TODO_ITEMS]);
-*/
   const addItem = async (inputValue) => {
     setGlobalId(globalId + 1);
     addTodo(globalId,inputValue)
+    setItemList([...TODO_ITEMS,{id:globalId, value: inputValue}])
     let aux = await getTodos();
     console.log(aux)
-
-
   };
 
   const removeItem = (itemId) => {
@@ -79,7 +55,7 @@ function App() {
           removeItem={removeItem}
           editItem={editItem}
         ></ItemList>
-        <NewTodo addItem={addItem}>NuevoTodo</NewTodo>
+        <NewTodo addItem={addItem}>Nuevo Todo</NewTodo>
       </div>
     </>
   );
