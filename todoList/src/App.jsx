@@ -1,13 +1,15 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ItemList from "../components/itemList";
 import NewTodo from "../components/newTodo";
-import {getTodos, getRefDB} from "./dbconnection.jsx"
+import {getTodos, getRefDB, addTodo} from "./dbconnection.jsx"
 import { get } from "firebase/database";
 function App() {
   
   const [TODO_ITEMS, setItemList] = useState([]);
   const [globalId, setGlobalId] = useState(4);
+  const prevTodoList = useRef();
+
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -16,7 +18,6 @@ function App() {
 
         if (snapshot.exists()) {
           const data = snapshot.val();
-          // Convert the data into an array (or any iterable format)
           const todosArray = Object.values(data);
 
           setItemList(todosArray);
@@ -27,26 +28,31 @@ function App() {
         console.error("Error fetching data:", error);
       }
     };
-
-    // Call the fetchTodos function to fetch data when the component mounts
     fetchTodos();
   }, []);
+  
+/*
+  useEffect(() => {
+  console.log("EFFECT TODO ITEMS");
 
-  /*
-  const [DUMMY_ITEMS, setItemList] = useState([
-    { id: 1, value: "Item 1" }, 
-    { id: 2, value: "Item 2" },
-    { id: 3, value: "Item 3" },
-  ]);
-  */
 
+  // Define a function to fetch and update data
+  const fetchData = async () => {
+    try {
+      const newTodoData = await getTodos(); // Fetch the new data
+      if (isFetching) {
+        setItemList(newTodoData); // Set the new data if fetch is still in progress
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  fetchData(); // Call the function immediately
+}, [TODO_ITEMS]);
+*/
   const addItem = async (inputValue) => {
-    // Update the itemList by adding a new item
-    setItemList([...TODO_ITEMS, { id: globalId, value: inputValue }]);
-
-    //setItemList([...TODO_ITEMS, { id: globalId, value: inputValue }]);
     setGlobalId(globalId + 1);
-
+    addTodo(globalId,inputValue)
     let aux = await getTodos();
     console.log(aux)
 
@@ -56,15 +62,12 @@ function App() {
   const removeItem = (itemId) => {
     console.log("Remove Button Pressed");
     console.log(itemId);
-    // Update the itemList by removing an item based on its ID
     const updatedItemList = TODO_ITEMS.filter((item) => item.id !== itemId);
     setItemList(updatedItemList);
   };
+
   const editItem = (itemId, value) => {
     console.log("Edit Button Pressed");
-    // Update the itemList by removing an item based on its ID
-    //const updatedItemList = itemList.filter((item) => item.id !== itemId);
-    //setItemList(updatedItemList);
   };
 
   return (

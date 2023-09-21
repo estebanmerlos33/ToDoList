@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, push } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAoWzZ1QGIh-RVehSzasbXE7TNZzLcT3I",
@@ -15,20 +15,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const todosRef = ref(database, "todos"); // Reference to the "todos" location
 
 export const getRefDB = () => {
-  const todosRef = ref(database, "todos"); // Reference to the "todos" location
+  
   return todosRef;
 };
 
 
 export const getTodos = async () => {
   try {
-    const todosRef = getRefDB();
     const snapshot = await get(todosRef);
     if (snapshot.exists()) {
       const data = await snapshot.val();
-      return data;
+      return Object.values(data);
     } else {
       console.log("No todos found.");
     }
@@ -36,3 +36,14 @@ export const getTodos = async () => {
     console.error("Error reading data:", error);
   }
 };
+
+export const addTodo = async (newId,newInput) => {
+  try {
+    const newTodo = {id: newId.toString(), value: newInput}
+    push(todosRef, newTodo)
+  } catch (error) {
+    console.error("Error adding toDo:", error);
+    
+  }
+
+}
