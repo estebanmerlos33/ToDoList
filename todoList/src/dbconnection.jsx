@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, push } from "firebase/database";
+import { getDatabase, ref, get, push, remove, query, equalTo,orderByChild,child} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAoWzZ1QGIh-RVehSzasbXE7TNZzLcT3I",
@@ -16,12 +16,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const todosRef = ref(database, "todos");
-
-export const getRefDB = () => {
-  
-  return todosRef;
-};
-
 
 export const getTodos = async () => {
   try {
@@ -47,3 +41,27 @@ export const addTodo = async (newId,newInput) => {
   }
 
 }
+
+export const removeTodo = async (todoIdToRemove) => {
+  try {
+    console.log(todoIdToRemove)
+    console.log(typeof(todoIdToRemove))
+    const todosQuery = query(todosRef, orderByChild("id"), equalTo(todoIdToRemove));
+    const snapshot = await get(todosQuery);
+
+    if (snapshot.exists()) {
+      const childSnapshot = snapshot.val();
+      const keyToRemove = Object.keys(childSnapshot)[0];
+      const todoRefToRemove = child(todosRef, keyToRemove);
+
+
+      await remove(todoRefToRemove);
+      console.log(`Removed successfully`);
+    }
+  }
+  catch (error) {
+    console.error("Error removing todo:", error);
+  }
+
+}
+

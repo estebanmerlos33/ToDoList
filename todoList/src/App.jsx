@@ -2,8 +2,7 @@ import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import ItemList from "../components/itemList";
 import NewTodo from "../components/newTodo";
-import {getTodos, getRefDB, addTodo} from "./dbconnection.jsx"
-import { get } from "firebase/database";
+import {getTodos, addTodo, removeTodo} from "./dbconnection.jsx"
 function App() {
   
   const [TODO_ITEMS, setItemList] = useState([]);
@@ -30,16 +29,16 @@ function App() {
   const addItem = async (inputValue) => {
     setGlobalId(globalId + 1);
     addTodo(globalId,inputValue)
-    setItemList([...TODO_ITEMS,{id:globalId, value: inputValue}])
+    setItemList([...TODO_ITEMS,{id:globalId.toString(), value: inputValue}])
     let aux = await getTodos();
-    console.log(aux)
   };
 
-  const removeItem = (itemId) => {
+  const removeItem = async (idToRemove) => {
     console.log("Remove Button Pressed");
-    console.log(itemId);
-    const updatedItemList = TODO_ITEMS.filter((item) => item.id !== itemId);
+    const updatedItemList = TODO_ITEMS.filter((item) => item.id !== idToRemove);
     setItemList(updatedItemList);
+    
+    await removeTodo(idToRemove)
   };
 
   const editItem = (itemId, value) => {
