@@ -26,3 +26,8 @@ li {
 button {
   margin-left: 10px;
 }
+
+.editMode{
+  initial-value: none;
+  display: none;
+}

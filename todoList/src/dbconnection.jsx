@@ -44,8 +44,6 @@ export const addTodo = async (newId,newInput) => {
 
 export const removeTodo = async (todoIdToRemove) => {
   try {
-    console.log(todoIdToRemove)
-    console.log(typeof(todoIdToRemove))
     const todosQuery = query(todosRef, orderByChild("id"), equalTo(todoIdToRemove));
     const snapshot = await get(todosQuery);
 
@@ -53,10 +51,8 @@ export const removeTodo = async (todoIdToRemove) => {
       const childSnapshot = snapshot.val();
       const keyToRemove = Object.keys(childSnapshot)[0];
       const todoRefToRemove = child(todosRef, keyToRemove);
-
-
       await remove(todoRefToRemove);
-      console.log(`Removed successfully`);
+      console.log(`ToDo removed successfully`);
     }
   }
   catch (error) {
