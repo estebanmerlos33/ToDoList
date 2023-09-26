@@ -27,7 +27,7 @@ button {
   margin-left: 10px;
 }
 
-.editMode{
+.editMode {
   initial-value: none;
   display: none;
 }

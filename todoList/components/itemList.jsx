@@ -1,5 +1,6 @@
 import "./itemList.css";
 import { React } from "react";
+import { EditionButtons } from "./editionButtons";
 
 const ItemList = (props) => {
   return (
@@ -10,22 +11,33 @@ const ItemList = (props) => {
             <div>{item.value}</div>
 
             <div>
-              <button onClick={() => props.editItem()}>✎</button>
+              <button
+                key={item.id}
+                onClick={() => props.handleClickEditButton(item.id)}
+              >
+                ✎
+              </button>
 
               <button
+                btnid={item.id}
                 className="editMode"
-                onClick={() => props.confirm(item.id)}
+                onClick={() => props.confirm(btnId)}
               >
                 ✓
               </button>
               <button
+                btnid={item.id}
                 className="editMode"
-                onClick={() => props.cancel(item.id)}
+                onClick={() => props.cancel(btnId)}
               >
-                ✖
+                ❌
               </button>
 
-              <button onClick={() => props.removeItem(item.id)}>Remove</button>
+              <button onClick={() => props.removeItem(item.id)}>🗑</button>
+              <EditionButtons
+                id={item.id}
+                editables={props.editables}
+              ></EditionButtons>
             </div>
           </li>
         ))}

@@ -3,9 +3,11 @@ import { useEffect, useState, useRef } from "react";
 import ItemList from "../components/itemList";
 import NewTodo from "../components/newTodo";
 import { getTodos, addTodo, removeTodo } from "./dbconnection.jsx";
+
 function App() {
   const [TODO_ITEMS, setItemList] = useState([]);
   const [globalId, setGlobalId] = useState(4);
+  const [editableItems, setEditableItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +41,6 @@ function App() {
         ...TODO_ITEMS,
         { id: globalId.toString(), value: inputValue },
       ]);
-      let aux = await getTodos();
     }
   };
 
@@ -50,9 +51,20 @@ function App() {
     await removeTodo(idToRemove);
   };
 
-  const toggleVisibilityEditButtons = () => {
-    var elements = document.getElementsByClassName("editMode");
+  const handleClickEditButton = (editableItemId) => {
+    let currEditables = Object.values(editableItems);
 
+    if (!currEditables.includes(editableItemId)) {
+      let newEditableList = [...currEditables, editableItemId];
+      console.log(newEditableList);
+      setEditableItems(newEditableList);
+    } else {
+      let filteredList = currEditables.filter((item) => item != editableItemId);
+      setEditableItems(filteredList);
+    }
+    /*
+    var elements = document.getElementsByClassName("editMode");
+    console.log(Object.values(elements))
     Object.values(elements).map((e) => {
       if (
         (e.style.display !== "inline" && e.style.display !== "none") ||
@@ -61,11 +73,7 @@ function App() {
         e.style.display = "inline";
       else if ((e.style.display = "inline")) e.style.display = "none";
     });
-  };
-
-  const handleClickEditButton = () => {
-    toggleVisibilityEditButtons();
-    console.log("Edit Button Pressed");
+    */
   };
 
   return (
@@ -73,11 +81,11 @@ function App() {
       <div className="container">
         <ItemList
           items={TODO_ITEMS}
-          addItem={addItem}
+          editables={Object.values(editableItems)}
           removeItem={removeItem}
-          editItem={handleClickEditButton}
+          handleClickEditButton={handleClickEditButton}
         ></ItemList>
-        <NewTodo addItem={addItem}>Nuevo Todo</NewTodo>
+        <NewTodo addItem={addItem}>New Todo</NewTodo>
       </div>
     </>
   );

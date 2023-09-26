@@ -1,9 +1,9 @@
 import { useState } from "react";
 const NewTodo = (props) => {
   const [inputValue, setInputValue] = useState("");
-  
+
   const handleClickButton = () => {
-    if(inputValue!== ""){
+    if (inputValue !== "") {
       props.addItem(inputValue);
       setInputValue("");
     }
@@ -20,7 +20,7 @@ const NewTodo = (props) => {
         value={inputValue}
         onChange={(e) => handleInputChange(e)}
       ></input>
-      <button onClick={handleClickButton}>Add ToDo</button>
+      <button onClick={handleClickButton}>➕</button>
     </div>
   );
 };
