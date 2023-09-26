@@ -11,31 +11,13 @@ const ItemList = (props) => {
             <div>{item.value}</div>
 
             <div>
-              <button
-                key={item.id}
-                onClick={() => props.handleClickEditButton(item.id)}
-              >
+              <button onClick={() => props.handleClickEditButton(item.id)}>
                 ✎
-              </button>
-
-              <button
-                btnid={item.id}
-                className="editMode"
-                onClick={() => props.confirm(btnId)}
-              >
-                ✓
-              </button>
-              <button
-                btnid={item.id}
-                className="editMode"
-                onClick={() => props.cancel(btnId)}
-              >
-                ❌
               </button>
 
               <button onClick={() => props.removeItem(item.id)}>🗑</button>
               <EditionButtons
-                id={item.id}
+                btnid={item.id}
                 editables={props.editables}
               ></EditionButtons>
             </div>
