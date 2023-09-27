@@ -2,7 +2,20 @@ import "./itemList.css";
 import { React } from "react";
 import { EditionButtons } from "./editionButtons";
 
+
+
+
 const ItemList = (props) => {
+
+
+  const handleConfirm = () => {
+    props.handleConfirm()
+  }
+
+  const handleCancel = () => {
+    props.handleCancel()
+  }
+
   return (
     <div className="itemList">
       <ul>
@@ -16,11 +29,15 @@ const ItemList = (props) => {
               </button>
 
               <button onClick={() => props.removeItem(item.id)}>🗑</button>
+              
               <EditionButtons
                 btnid={item.id}
                 editables={props.editables}
+                handleConfirm = {handleConfirm}
+                handleCancel = {handleCancel}
               ></EditionButtons>
             </div>
+
           </li>
         ))}
       </ul>

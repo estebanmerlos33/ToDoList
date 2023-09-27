@@ -20,8 +20,10 @@ function App() {
             setItemList([]);
           } else {
             setItemList(todosArray);
-            let maxId = todosArray.map( todo => todo.id).sort((a,b) => b-a)[0];
-            setGlobalId(parseInt(maxId)+1)
+            let maxId = todosArray
+              .map((todo) => todo.id)
+              .sort((a, b) => b - a)[0];
+            setGlobalId(parseInt(maxId) + 1);
           }
         }
       } catch (error) {
@@ -66,19 +68,14 @@ function App() {
       let filteredList = currEditables.filter((item) => item != editableItemId);
       setEditableItems(filteredList);
     }
+  };
 
-    let elements = document.getElementsByClassName("editMode");
-    console.log(Object.values(elements));
-    Object.values(elements)
-      .filter((e) => e === editableItemId)
-      .map((e) => {
-        if (
-          (e.style.display !== "inline" && e.style.display !== "none") ||
-          e.style.display === "none"
-        )
-          e.style.display = "inline";
-        else if ((e.style.display = "inline")) e.style.display = "none";
-      });
+  const handleConfirm = () => {
+    console.log("Confirm button clicked");
+  };
+
+  const handleCancel = () => {
+    console.log("Cancel button clicked");
   };
 
   return (
@@ -89,6 +86,8 @@ function App() {
           editables={Object.values(editableItems)}
           removeItem={removeItem}
           handleClickEditButton={handleClickEditButton}
+          handleConfirm={handleConfirm}
+          handleCancel={handleCancel}
         ></ItemList>
         <NewTodo addItem={addItem}>New Todo</NewTodo>
       </div>

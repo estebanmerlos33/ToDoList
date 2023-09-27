@@ -1,19 +1,19 @@
 .itemList {
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
+  position: relative;
+  display: inline-block;
+  flex-direction: row;
+  align-items: center;
   width: 80vw;
-  outline: solid red 1px;
-  margin: 0 auto; /* Center the entire list horizontally */
-  padding: 10px; /* Add padding if needed */
 }
 
 li {
+  position: relative;
   list-style-type: none;
   display: flex;
+  flex-direction: row;
+  place-items: center;
   justify-content: space-between;
-  align-items: center;
-  width: 70vw;
+  width: 95%;
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid #ccc;
