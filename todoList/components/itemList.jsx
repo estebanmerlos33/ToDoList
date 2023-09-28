@@ -18,8 +18,8 @@ const ItemList = (props) => {
           <li key={item.id}>
             <div>{item.value}</div>
 
-            <div className="mainButtons">
-              <div>
+            <div className="btnContainer">
+              <div className="mainBtns">
                 <button onClick={() => props.handleClickEditButton(item.id)}>
                   ✎
                 </button>
