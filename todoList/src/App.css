@@ -2,13 +2,28 @@
   margin: 0 auto;
   text-align: center;
 }
+
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   place-items: center;
   width: 100vw;
 }
+.mainButtons {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .editContainer > input {
-  display: block;
-  width: 90%;
+  position: relative;
+  width: 85%;
+  margin-left: 5%;
+  margin-bottom: 5px;
+}
+.editBtnContainer {
+  display: flex;
+  justify-content: center;
 }

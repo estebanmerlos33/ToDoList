@@ -1,8 +1,6 @@
 .itemList {
   position: relative;
   display: inline-block;
-  flex-direction: row;
-  align-items: center;
   width: 80vw;
 }
 
@@ -24,7 +22,7 @@ li {
 }
 
 button {
-  margin-left: 10px;
+  margin-left: 3%;
 }
 
 .editMode {

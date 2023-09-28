@@ -15,20 +15,22 @@ export const EditionButtons = (props) => {
           onChange={(e) => handleInputChange(e)}
           placeholder="Edit ToDo"
         ></input>
-        <button
-          className="editBtn"
-          btnid={props.btnid}
-          onClick={() => props.handleConfirm(props.id)}
-        >
-          ✓
-        </button>
-        <button
-          className="editBtn"
-          btnid={props.btnid}
-          onClick={() => props.handleCancel(props.id)}
-        >
-          ❌
-        </button>
+        <div className="editBtnContainer">
+          <button
+            className="editBtn"
+            btnid={props.btnid}
+            onClick={() => props.handleConfirm(props.id)}
+          >
+            ✓
+          </button>
+          <button
+            className="editBtn"
+            btnid={props.btnid}
+            onClick={() => props.handleCancel(props.id)}
+          >
+            ❌
+          </button>
+        </div>
       </div>
     )
   );
