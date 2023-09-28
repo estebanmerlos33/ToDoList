@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./editionButtons.css";
 
 export const EditionButtons = (props) => {
   const [editInputValue, setEditInputValue] = useState("");
