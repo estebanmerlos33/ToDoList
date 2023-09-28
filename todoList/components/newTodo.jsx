@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./newTodo.css";
 const NewTodo = (props) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -13,14 +14,14 @@ const NewTodo = (props) => {
     setInputValue(e.target.value);
   };
   return (
-    <div>
+    <div className="newTodoContainer">
       <input
         placeholder="New ToDo"
         type="text"
         value={inputValue}
         onChange={(e) => handleInputChange(e)}
       ></input>
-      <button onClick={handleClickButton}>➕</button>
+      <button onClick={handleClickButton}>＋</button>
     </div>
   );
 };
