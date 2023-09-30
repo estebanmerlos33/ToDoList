@@ -23,7 +23,10 @@ function App() {
             let maxId = todosArray
               .map((todo) => todo.id)
               .sort((a, b) => b - a)[0];
-            setGlobalId(parseInt(maxId) + 1);
+
+            console.log(todosArray);
+            if (maxId === null && maxId === undefined) setGlobalId(0);
+            else setGlobalId(parseInt(maxId) + 1);
           }
         }
       } catch (error) {
