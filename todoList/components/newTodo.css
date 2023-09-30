@@ -1,6 +1,9 @@
-
 .newTodoContainer{
     display:flex;
     place-items: center;
     place-content: center;
+}
+
+.newTodoContainer button{
+    color: grey;
 }
