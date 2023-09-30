@@ -1,6 +1,5 @@
-
-.newTodoContainer{
-    display:flex;
-    place-items: center;
-    place-content: center;
+.newTodoContainer {
+  display: flex;
+  place-items: center;
+  place-content: center;
 }
