@@ -74,8 +74,9 @@ function App() {
     console.log("Confirm button clicked");
   };
 
-  const handleCancel = () => {
-    console.log("Cancel button clicked");
+  const handleCancel = (id) => {
+    handleClickEditButton(id);
+    console.log("Cancel button clicked " + id);
   };
 
   return (

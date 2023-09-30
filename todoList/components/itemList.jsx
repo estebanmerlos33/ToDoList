@@ -3,12 +3,13 @@ import { React } from "react";
 import { EditionButtons } from "./editionButtons";
 
 const ItemList = (props) => {
+
   const handleConfirm = () => {
     props.handleConfirm();
   };
 
-  const handleCancel = () => {
-    props.handleCancel();
+  const handleCancel = (id) => {
+    props.handleCancel(id);
   };
 
   return (
