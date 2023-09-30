@@ -2,19 +2,8 @@ import { useState } from "react";
 
 export const EditionButtons = (props) => {
   const [editInputValue, setEditInputValue] = useState("");
-  
   const handleInputChange = (e) => {
     setEditInputValue(e.target.value);
-  };
-
-  const handleConfirm = (id,editInputValue) => {
-    setEditInputValue("");
-    props.handleConfirm(id,editInputValue);
-  };
-
-  const handleCancel = (id) => {
-    setEditInputValue("");
-    props.handleCancel(id);
   };
 
   return (
@@ -28,11 +17,16 @@ export const EditionButtons = (props) => {
         <div className="editBtnContainer">
           <button
             className="editBtn"
-            onClick={() => handleConfirm(props.btnid)}
+            btnid={props.btnid}
+            onClick={() => props.handleConfirm(props.id)}
           >
             ✓
           </button>
-          <button className="editBtn" onClick={() => handleCancel(props.btnid)}>
+          <button
+            className="editBtn"
+            btnid={props.btnid}
+            onClick={() => props.handleCancel(props.id)}
+          >
             ❌
           </button>
         </div>

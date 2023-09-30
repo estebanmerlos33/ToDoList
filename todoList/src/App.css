@@ -15,7 +15,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 1%;
 }
 .btnContainer button {
   position: relative;
@@ -26,6 +25,7 @@
 }
 
 .editContainer > input {
+  
   position: relative;
   width: 85%;
   margin-left: 5%;
@@ -35,3 +35,4 @@
   display: flex;
   justify-content: center;
 }
+
