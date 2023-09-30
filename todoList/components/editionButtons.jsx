@@ -2,9 +2,15 @@ import { useState } from "react";
 
 export const EditionButtons = (props) => {
   const [editInputValue, setEditInputValue] = useState("");
+
   const handleInputChange = (e) => {
     setEditInputValue(e.target.value);
   };
+
+  const handleCancel = (id) => {
+    setEditInputValue("");
+    props.handleCancel(id)
+  }
 
   return (
     props.editables.includes(props.btnid) && (
@@ -18,14 +24,14 @@ export const EditionButtons = (props) => {
           <button
             className="editBtn"
             btnid={props.btnid}
-            onClick={() => props.handleConfirm(props.id)}
+            onClick={() => props.handleConfirm(props.btnid)}
           >
             ✓
           </button>
           <button
             className="editBtn"
             btnid={props.btnid}
-            onClick={() => props.handleCancel(props.id)}
+            onClick={() => handleCancel(props.btnid)}
           >
             ❌
           </button>

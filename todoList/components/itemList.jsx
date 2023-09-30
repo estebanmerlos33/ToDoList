@@ -7,9 +7,6 @@ const ItemList = (props) => {
     props.handleConfirm();
   };
 
-  const handleCancel = () => {
-    props.handleCancel();
-  };
 
   return (
     <div className="itemList">
@@ -30,7 +27,7 @@ const ItemList = (props) => {
                 btnid={item.id}
                 editables={props.editables}
                 handleConfirm={handleConfirm}
-                handleCancel={handleCancel}
+                handleCancel={props.handleCancel}
               ></EditionButtons>
             </div>
           </li>
