@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.itemList {
+  position: relative;
+  width: 85vw;
+}
+
+li {
+  position: relative;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  place-items: center;
+  justify-content: space-around;
+  width: 95%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+.todoValue {
+  width: fit-content;
+}
+
+.item-content {
+  flex-grow: 1;
+}
+
+button {
+  display: flex;
+  place-items: center;
+  margin-left: 3%;
+  width: 40px;
+  height: 40px;
+}
+
+.confirmBtn{
+  color:rgb(4, 250, 4);
+}
+
+.editBtn{
+  color:rgb(255, 187, 0);
+}

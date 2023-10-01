@@ -1,0 +1,42 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  width: 100vw;
+}
+.btnContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btnContainer button {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.editContainer input {
+  background-color: rgb(28, 92, 177);
+  
+  position: relative;
+  width: 75%;
+  margin-bottom: 3%;
+}
+.editBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+::placeholder {
+  
+  color: rgba(192, 182, 182, 0.897);
+  opacity: 1; /* Firefox */
+}
