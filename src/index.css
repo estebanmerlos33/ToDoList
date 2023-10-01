@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgb(255, 255, 255);
-  background-color: #242424;
+  background-color: #112f4e;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +18,6 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #112f4e;
 }
 
 h1 {

@@ -3,6 +3,7 @@
   place-items: center;
   place-content: center;
   width: 50%;
+  margin-bottom: 1%;
 }
 
 .newTodoContainer button {
