@@ -1,20 +1,27 @@
+.item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .itemList {
   position: relative;
-  display: inline-block;
-  width: 70vw;
+  width: 85vw;
 }
 
 li {
   position: relative;
   list-style-type: none;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   place-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 95%;
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid #ccc;
+}
+.todoValue {
+  width: fit-content;
 }
 
 .item-content {
@@ -22,11 +29,17 @@ li {
 }
 
 button {
+  display: flex;
+  place-items: center;
   margin-left: 3%;
-  width: 10vw;
+  width: 40px;
+  height: 40px;
 }
 
-.editMode {
-  initial-value: none;
-  display: none;
+.confirmBtn{
+  color:rgb(4, 250, 4);
+}
+
+.editBtn{
+  color:rgb(255, 187, 0);
 }

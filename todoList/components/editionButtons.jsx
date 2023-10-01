@@ -15,26 +15,21 @@ export const EditionButtons = (props) => {
   return (
     props.editables.includes(props.btnid) && (
       <div className="editContainer">
-        <input
-          value={editInputValue}
-          onChange={(e) => handleInputChange(e)}
-          placeholder="Edit ToDo"
-        ></input>
+        <div>
+          <input
+            value={editInputValue}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Edit ToDo"
+          ></input>
+        </div>
         <div className="editBtnContainer">
           <button
-            className="editBtn"
-            btnid={props.btnid}
+            className="confirmBtn"
             onClick={() => props.handleConfirm(props.btnid, editInputValue)}
           >
             ✓
           </button>
-          <button
-            className="editBtn"
-            btnid={props.btnid}
-            onClick={() => handleCancel(props.btnid)}
-          >
-            ❌
-          </button>
+          <button onClick={() => handleCancel(props.btnid)}>❌</button>
         </div>
       </div>
     )

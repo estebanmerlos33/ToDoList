@@ -40,15 +40,20 @@ function App() {
   };
 
   const addItem = async (inputValue) => {
-    if (!validateAlfaNumChars(inputValue))
-      alert("Please enter alphanumeric characters only.");
+    if (inputValue === "") alert("The input should not be empty.");
     else {
-      setGlobalId(globalId + 1);
-      addTodo(globalId, inputValue);
-      setItemList([
-        ...TODO_ITEMS,
-        { id: globalId.toString(), value: inputValue },
-      ]);
+      if (!validateAlfaNumChars(inputValue))
+        alert(
+          "Please enter non-empty strings with alphanumeric characters only."
+        );
+      else {
+        setGlobalId(globalId + 1);
+        addTodo(globalId, inputValue);
+        setItemList([
+          ...TODO_ITEMS,
+          { id: globalId.toString(), value: inputValue },
+        ]);
+      }
     }
   };
 
@@ -72,16 +77,21 @@ function App() {
   };
 
   const handleConfirm = async (idToUpdate, newValue) => {
-    await updateTodo(idToUpdate, newValue);
-    setItemList((TODO_ITEMS) => {
-      return TODO_ITEMS.map((item) => {
-        if (item.id === idToUpdate) {
-          // Create a new object with the updated value
-          return { ...item, value: newValue };
-        }
-        return item;
+    if (!validateAlfaNumChars(newValue))
+      alert(
+        "Please enter non-empty strings with alphanumeric characters only."
+      );
+    else {
+      await updateTodo(idToUpdate, newValue);
+      setItemList((TODO_ITEMS) => {
+        return TODO_ITEMS.map((item) => {
+          if (item.id === idToUpdate) {
+            return { ...item, value: newValue };
+          }
+          return item;
+        });
       });
-    });
+    }
   };
 
   const handleCancel = (id) => {
@@ -90,16 +100,26 @@ function App() {
 
   return (
     <>
-      <div className="container">
-        <ItemList
-          items={TODO_ITEMS}
-          editables={Object.values(editableItems)}
-          removeItem={removeItem}
-          handleClickEditButton={handleClickEditButton}
-          handleConfirm={handleConfirm}
-          handleCancel={handleCancel}
-        ></ItemList>
-        <NewTodo addItem={addItem}>New Todo</NewTodo>
+      <div>
+        <div>
+          <h1>ToDo List</h1>
+          <h3>
+            Thanks por checking out my ToDo list! This project was created using
+            React and Firebase and its purpose is to show all four CRUD
+            operations (Create, Read, Update and Delete). <br></br>Enjoy!
+          </h3>
+        </div>
+        <div className="container">
+          <ItemList
+            items={TODO_ITEMS}
+            editables={Object.values(editableItems)}
+            removeItem={removeItem}
+            handleClickEditButton={handleClickEditButton}
+            handleConfirm={handleConfirm}
+            handleCancel={handleCancel}
+          ></ItemList>
+          <NewTodo addItem={addItem}>New Todo</NewTodo>
+        </div>
       </div>
     </>
   );

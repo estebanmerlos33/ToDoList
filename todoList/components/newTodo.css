@@ -2,8 +2,16 @@
   display: flex;
   place-items: center;
   place-content: center;
+  width: 50%;
 }
 
 .newTodoContainer button {
-  color: grey;
+  height: 30px;
+  color: white;
+}
+.newTodoContainer input {
+  
+  background-color: rgb(28, 92, 177);
+  height: 30px;
+  width: 50%;
 }
