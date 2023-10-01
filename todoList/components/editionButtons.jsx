@@ -9,8 +9,8 @@ export const EditionButtons = (props) => {
 
   const handleCancel = (id) => {
     setEditInputValue("");
-    props.handleCancel(id)
-  }
+    props.handleCancel(id);
+  };
 
   return (
     props.editables.includes(props.btnid) && (
@@ -24,7 +24,7 @@ export const EditionButtons = (props) => {
           <button
             className="editBtn"
             btnid={props.btnid}
-            onClick={() => props.handleConfirm(props.btnid)}
+            onClick={() => props.handleConfirm(props.btnid, editInputValue)}
           >
             ✓
           </button>

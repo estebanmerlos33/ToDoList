@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import ItemList from "../components/itemList";
 import NewTodo from "../components/newTodo";
-import { getTodos, addTodo, removeTodo } from "./dbconnection.jsx";
+import { getTodos, addTodo, removeTodo, updateTodo } from "./dbconnection.jsx";
 
 function App() {
   const [TODO_ITEMS, setItemList] = useState([]);
@@ -23,8 +23,6 @@ function App() {
             let maxId = todosArray
               .map((todo) => todo.id)
               .sort((a, b) => b - a)[0];
-
-            console.log(todosArray);
             if (maxId === null && maxId === undefined) setGlobalId(0);
             else setGlobalId(parseInt(maxId) + 1);
           }
@@ -73,13 +71,21 @@ function App() {
     }
   };
 
-  const handleConfirm = () => {
-    console.log("Confirm button clicked");
+  const handleConfirm = async (idToUpdate, newValue) => {
+    await updateTodo(idToUpdate, newValue);
+    setItemList((TODO_ITEMS) => {
+      return TODO_ITEMS.map((item) => {
+        if (item.id === idToUpdate) {
+          // Create a new object with the updated value
+          return { ...item, value: newValue };
+        }
+        return item;
+      });
+    });
   };
 
   const handleCancel = (id) => {
     handleClickEditButton(id);
-    console.log("Cancel button clicked " + id);
   };
 
   return (

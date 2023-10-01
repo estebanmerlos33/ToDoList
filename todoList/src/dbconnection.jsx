@@ -1,6 +1,16 @@
-
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, push, remove, query, equalTo,orderByChild,child} from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  get,
+  push,
+  remove,
+  update,
+  query,
+  equalTo,
+  orderByChild,
+  child,
+} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAoWzZ1QGIh-RVehSzasbXE7TNZzLcT3I",
@@ -10,7 +20,7 @@ const firebaseConfig = {
   storageBucket: "todolistbd-9e6c2.appspot.com",
   messagingSenderId: "734650237253",
   appId: "1:734650237253:web:6cdaa668ddf177270e7e2c",
-  measurementId: "G-FLHMDEQMCW"
+  measurementId: "G-FLHMDEQMCW",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -31,20 +41,22 @@ export const getTodos = async () => {
   }
 };
 
-export const addTodo = async (newId,newInput) => {
+export const addTodo = async (newId, newInput) => {
   try {
-    const newTodo = {id: newId.toString(), value: newInput}
-    push(todosRef, newTodo)
+    const newTodo = { id: newId.toString(), value: newInput };
+    push(todosRef, newTodo);
   } catch (error) {
     console.error("Error adding toDo:", error);
-    
   }
-
-}
+};
 
 export const removeTodo = async (todoIdToRemove) => {
   try {
-    const todosQuery = query(todosRef, orderByChild("id"), equalTo(todoIdToRemove));
+    const todosQuery = query(
+      todosRef,
+      orderByChild("id"),
+      equalTo(todoIdToRemove)
+    );
     const snapshot = await get(todosQuery);
 
     if (snapshot.exists()) {
@@ -54,10 +66,27 @@ export const removeTodo = async (todoIdToRemove) => {
       await remove(todoRefToRemove);
       console.log(`ToDo removed successfully`);
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error removing todo:", error);
   }
+};
 
-}
-
+export const updateTodo = async (todoIdToUpdate, newValue) => {
+  try {
+    const todosQuery = query(
+      todosRef,
+      orderByChild("id"),
+      equalTo(todoIdToUpdate)
+    );
+    const snapshot = await get(todosQuery);
+    if (snapshot.exists()) {
+      const childSnapshot = snapshot.val();
+      const keyToUpdate = Object.keys(childSnapshot)[0];
+      const todoRefToUpdate = child(todosRef, keyToUpdate);
+      await update(todoRefToUpdate, { value: newValue });
+      console.log(`ToDo updated successfully`);
+    }
+  } catch (error) {
+    console.error("Error updating todo:", error);
+  }
+};

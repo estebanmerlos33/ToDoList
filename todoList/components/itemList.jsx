@@ -3,11 +3,6 @@ import { React } from "react";
 import { EditionButtons } from "./editionButtons";
 
 const ItemList = (props) => {
-  const handleConfirm = () => {
-    props.handleConfirm();
-  };
-
-
   return (
     <div className="itemList">
       <ul>
@@ -26,7 +21,7 @@ const ItemList = (props) => {
               <EditionButtons
                 btnid={item.id}
                 editables={props.editables}
-                handleConfirm={handleConfirm}
+                handleConfirm={props.handleConfirm}
                 handleCancel={props.handleCancel}
               ></EditionButtons>
             </div>
