@@ -102,12 +102,12 @@ function App() {
     <>
       <div>
         <div>
-          <h1>ToDo List</h1>
-          <h3>
+          <h2>ToDo List</h2>
+          <h4>
             Thanks por checking out my ToDo list! This project was created using
             React and Firebase and its purpose is to show all four CRUD
             operations (Create, Read, Update and Delete). <br></br>Enjoy!
-          </h3>
+          </h4>
         </div>
         <div className="container">
           <ItemList
