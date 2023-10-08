@@ -20,6 +20,7 @@ const NewTodo = (props) => {
         type="text"
         value={inputValue}
         onChange={(e) => handleInputChange(e)}
+        maxLength="30"
       ></input>
       <button onClick={handleClickButton}>＋</button>
     </div>

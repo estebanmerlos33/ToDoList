@@ -20,6 +20,7 @@ export const EditionButtons = (props) => {
             value={editInputValue}
             onChange={(e) => handleInputChange(e)}
             placeholder="Edit ToDo"
+            maxLength="30"
           ></input>
         </div>
         <div className="editBtnContainer">
