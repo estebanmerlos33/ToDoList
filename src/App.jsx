@@ -82,15 +82,18 @@ function App() {
         "Please enter non-empty strings with alphanumeric characters only."
       );
     else {
-      await updateTodo(idToUpdate, newValue);
-      setItemList((TODO_ITEMS) => {
-        return TODO_ITEMS.map((item) => {
-          if (item.id === idToUpdate) {
-            return { ...item, value: newValue };
-          }
-          return item;
+      if(newValue !== ""){
+        await updateTodo(idToUpdate, newValue);
+        setItemList((TODO_ITEMS) => {
+          return TODO_ITEMS.map((item) => {
+            if (item.id === idToUpdate) {
+              return { ...item, value: newValue };
+            }
+            return item;
+          });
         });
-      });
+      }
+      
     }
   };
 
